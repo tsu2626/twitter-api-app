@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  form(action="/users/create" method="post")
+    label(for="last_name") 名前(姓)
+    input(id="last_name" type="text" name="last_name")
+    label(for="first_name") 名前(名)
+    input(id="first_name" type="text" name="first_name")
+    label(for="email") メールアドレス
+    input(id="email" type="text" name="email")
+
+  table
+  tr
+    th ID
+    th 名前(姓)
+    th 名前(名)
+    th メールアドレス
+    th
+  each user in users
+    tr
+      form(action=`/users/update/${user.id}` method="post")
+        td #{user.id}
+        td
+          input(type="text" name="last_name" value=user.last_name)
+        td
+          input(type="text" name="first_name" value=user.first_name)
+        td
+          input(type="text" name="email" value=user.email)
